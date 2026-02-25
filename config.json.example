@@ -1,0 +1,31 @@
+{
+  "models": {
+    "sophia": "qwen3-30b-a3b-abliterated-erotic-i1",
+    "logic": "openai/gpt-oss-20b",
+    "vision": "qwen/qwen3-vl-8b",
+    "orion": "orion-zhen-meissa-qwen2.5-7b-instruct",
+    "stheno": "sao10k_-_l3-8b-stheno-v3.2",
+    "celeste": "mn-12b-celeste-v1.9",
+    "magnum": "magnum-v4-9b",
+    "freegpt": "gpt-oss-20b-derestricted"
+  },
+  "prompts": {
+    "sophia": "Example prompt: Replace with your custom RP character description. Use Russian language.",
+    "logic": "Example prompt: Replace with your custom logic/math assistant instructions.",
+    "orion": "Example prompt: Replace with your custom RP character description.",
+    "stheno": "Example prompt: Replace with your custom RP character description.",
+    "celeste": "Example prompt: Replace with your custom RP character description.",
+    "magnum": "Example prompt: Replace with your custom RP character description.",
+    "freegpt": "Example prompt: Replace with your custom unrestricted assistant instructions.",
+    "vision": "Analyze the image. Describe what you see in detail using Russian."
+  },
+  "ui": {
+    "keyboard": [
+      ["👩 Sophia", "🧠 Logic", "👁 Vision"],
+      ["🌀 Orion", "🐍 Stheno", "💜 Celeste"],
+      ["🍆 Magnum", "🔓 FreeGPT", "📂 Chats"],
+      ["🔥 RESET CHAT", "⚙️ Status", "🧠 Think: OFF"],
+      ["🎭 RP Setup", "📝 Show RP", "❌ Clear RP"]
+    ]
+  }
+}
