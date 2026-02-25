@@ -1,14 +1,3 @@
-# 🚀 Готовый проект с новым названием: LmStudio-To-Telegram-bot
-
-Вот все файлы с заменённым названием. Просто скопируй и замени в своём проекте.
-
----
-
-## 1. `README.md`
-
-```markdown
-# LmStudio-To-Telegram-bot
-
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue)](https://python.org)
 [![LM Studio](https://img.shields.io/badge/LM_Studio-0.4%2B-orange)](https://lmstudio.ai)
 [![Telegram Bot](https://img.shields.io/badge/Telegram-Bot-blue)](https://telegram.org)
