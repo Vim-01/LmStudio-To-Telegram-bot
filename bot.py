@@ -518,7 +518,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 row[i] = f"🧠 Think: {think_status}"
 
     await update.message.reply_text(
-        "✨ Arch-AI Online\n"
+        "✨ Bridge Online\n"
         "• Стриминг ответов в реальном времени\n"
         "• Автоматическая загрузка/выгрузка моделей\n"
         "• Поддержка изображений (Vision)\n"
@@ -545,19 +545,30 @@ async def handle_msg(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await show_main_menu(update, sess)
         return
 
-    # Карта режимов
-    mode_map = {
-        "👩 Sophia": "sophia", "🧠 Logic": "logic", "👁 Vision": "vision",
-        "🌀 Orion": "orion", "🐍 Stheno": "stheno", "💜 Celeste": "celeste",
-        "🍆 Magnum": "magnum", "🔓 FreeGPT": "freegpt"
-    }
+    # ⭐ ДИНАМИЧЕСКИЙ mode_map из config.json
+    mode_map = {}
+    for row in KEYBOARD:
+        for btn_text in row:
+            # Пропускаем служебные кнопки
+            if btn_text in ["📂 Chats", "🔥 RESET CHAT", "⚙️ Status", "🎭 RP Setup", "📝 Show RP", "❌ Clear RP"]:
+                continue
+            if btn_text.startswith("🧠 Think:"):
+                continue
+            # Ищем совпадение по имени модели (убираем эмодзи)
+            clean_name = re.sub(r'^[^\w\s]+', '', btn_text).strip().lower()
+            for model_key in MODELS.keys():
+                if clean_name in model_key.lower() or model_key.lower() in clean_name:
+                    mode_map[btn_text] = model_key
+                    break
 
+    # ⭐ Переключение режима (ОДИН РАЗ, не дублировать!)
     if text in mode_map:
         sess.mode = mode_map[text]
         save_sessions()
         await update.message.reply_text(f"🔄 Режим изменён на: {sess.mode.upper()}\nМодель будет загружена при следующем запросе.")
         return
 
+    # Остальные команды
     if text == "🔥 RESET CHAT":
         sess.messages = []
         save_sessions()
@@ -696,7 +707,7 @@ async def post_init(application: Application):
     bot_instance = application.bot
     load_sessions()
     asyncio.create_task(browser_killer())
-    logger.info("🚀 Arch-AI Telegram Bot запущен!")
+    logger.info("🚀 Bridge Telegram Bot запущен!")
     logger.info(f"👤 ADMIN_ID: {CFG['ADMIN_ID']}")
     logger.info(f"🌐 LM Studio URL: {CFG['BASE_URL']}")
     logger.info(f"🧠 Доступные режимы: {', '.join(MODELS.keys())}")
